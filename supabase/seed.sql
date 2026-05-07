@@ -1,0 +1,16 @@
+-- terracotta: seed data
+--
+-- Profiles are created automatically by the on_auth_user_created
+-- trigger when George and Isabelle accept their dashboard invites
+-- (Auth -> Users -> Invite User). The initial display_name is the
+-- email local-part.
+--
+-- After both have signed in once, you can rename them via the app's
+-- /me page, or manually here:
+--
+--   update public.profiles set display_name = 'George'
+--     where id = (select id from auth.users where email = 'george@example.com');
+--   update public.profiles set display_name = 'Isabelle'
+--     where id = (select id from auth.users where email = 'isabelle@example.com');
+--
+-- This file is intentionally empty so `supabase db reset` is a no-op.

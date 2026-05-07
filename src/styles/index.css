@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Terracotta-toned palette (default = dark, warm) */
+    --background: 20 18% 8%;
+    --foreground: 30 30% 94%;
+
+    --card: 20 18% 11%;
+    --card-foreground: 30 30% 94%;
+
+    --popover: 20 18% 11%;
+    --popover-foreground: 30 30% 94%;
+
+    /* Terracotta primary */
+    --primary: 16 65% 48%;
+    --primary-foreground: 30 30% 98%;
+
+    --secondary: 22 25% 18%;
+    --secondary-foreground: 30 30% 94%;
+
+    --muted: 22 18% 16%;
+    --muted-foreground: 28 12% 65%;
+
+    --accent: 30 60% 55%;
+    --accent-foreground: 20 18% 8%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 30 30% 98%;
+
+    --border: 22 20% 22%;
+    --input: 22 20% 22%;
+    --ring: 16 65% 48%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* iOS notch / home-indicator safe areas */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+      env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
