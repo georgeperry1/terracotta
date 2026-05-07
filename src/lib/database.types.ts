@@ -183,8 +183,11 @@ export interface Database {
         ];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
     Enums: {
       queue_vote: QueueVote;
     };
+    CompositeTypes: Record<string, never>;
   };
 }

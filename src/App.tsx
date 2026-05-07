@@ -9,6 +9,7 @@ import { queryClient } from '@/lib/queryClient';
 import Library from '@/pages/Library';
 import Login from '@/pages/Login';
 import Me from '@/pages/Me';
+import MovieDetail from '@/pages/MovieDetail';
 import Queue from '@/pages/Queue';
 import Search from '@/pages/Search';
 import Watchlist from '@/pages/Watchlist';
@@ -24,6 +25,7 @@ export default function App() {
               <Route element={<AppShell />}>
                 <Route index element={<Library />} />
                 <Route path="search" element={<Search />} />
+                <Route path="movie/:tmdbId" element={<MovieDetail />} />
                 <Route path="queue" element={<Queue />} />
                 <Route path="watchlist" element={<Watchlist />} />
                 <Route path="me" element={<Me />} />
