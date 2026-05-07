@@ -1,27 +1,38 @@
-import { Film } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+import AppShell from '@/components/AppShell';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { AuthProvider } from '@/hooks/AuthProvider';
+import { queryClient } from '@/lib/queryClient';
+
+import Library from '@/pages/Library';
+import Login from '@/pages/Login';
+import Me from '@/pages/Me';
+import Queue from '@/pages/Queue';
+import Search from '@/pages/Search';
+import Watchlist from '@/pages/Watchlist';
 
 export default function App() {
   return (
-    <main className="min-h-dvh flex flex-col items-center justify-center p-6">
-      <div className="max-w-sm w-full text-center space-y-6">
-        <div className="flex justify-center">
-          <div className="rounded-2xl bg-primary/10 p-4 text-primary">
-            <Film className="h-8 w-8" />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <h1 className="text-4xl font-semibold tracking-tight text-primary">
-            terracotta
-          </h1>
-          <p className="text-muted-foreground">
-            A private movie rating library for George &amp; Isabelle.
-          </p>
-        </div>
-        <Button className="w-full" size="lg">
-          Get started
-        </Button>
-      </div>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppShell />}>
+                <Route index element={<Library />} />
+                <Route path="search" element={<Search />} />
+                <Route path="queue" element={<Queue />} />
+                <Route path="watchlist" element={<Watchlist />} />
+                <Route path="me" element={<Me />} />
+              </Route>
+            </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
