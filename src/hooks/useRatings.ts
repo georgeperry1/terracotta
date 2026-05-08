@@ -50,8 +50,10 @@ export function useRateMovie() {
       void queryClient.invalidateQueries({
         queryKey: ratingsQueryKey(details.id),
       });
-      // First rating triggers DB-side queue removal; refresh the queue too.
+      // DB triggers also drop this movie from the queue and from the
+      // rater's watchlist on first rating, so refresh both.
       void queryClient.invalidateQueries({ queryKey: ['queue'] });
+      void queryClient.invalidateQueries({ queryKey: ['watchlist'] });
     },
   });
 }

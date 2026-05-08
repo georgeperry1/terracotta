@@ -18,16 +18,19 @@ export interface Database {
         Row: {
           id: string;
           display_name: string;
+          avatar_path: string | null;
           created_at: string;
         };
         Insert: {
           id: string;
           display_name: string;
+          avatar_path?: string | null;
           created_at?: string;
         };
         Update: {
           id?: string;
           display_name?: string;
+          avatar_path?: string | null;
           created_at?: string;
         };
         Relationships: [];
